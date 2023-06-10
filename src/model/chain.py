@@ -1,4 +1,5 @@
 from langchain.chat_models import ChatOpenAI
+from langchain import HuggingFaceHub
 from kor.extraction import create_extraction_chain
 from kor.nodes import Object, Text
 from kor import create_extraction_chain
@@ -6,10 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatOpenAI(
-    #model_name="gpt-3.5-turbo",
-    temperature=0,
-)
+repo_id = "tiiuae/falcon-7b"
+llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature":0, "max_length":64})
 
 schema = Object(
     id="brian",
