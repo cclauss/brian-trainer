@@ -46,7 +46,7 @@ schema = Object(
         #     examples=[("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")]
         # ),
         Text(
-            id="tokenOut",
+            id="token_out",
             description="The token used as output in the swap",
             examples=[("I want to swap 100 XDAI for DAI on Gnosis", "DAI")]
         )
