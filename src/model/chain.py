@@ -18,7 +18,7 @@ schema = Object(
         Text(
             id="action",
             description="what is the action that the user wants to perform",
-            examples=[("I want to know the balance", "balance")],
+            examples=[("I want to know the balance", "balance"), ("I want to swap", "swap"), ("I want to transfer", "transfer")],
         ),
         Text(
             id="address",
@@ -28,8 +28,8 @@ schema = Object(
         ),
         Text(
             id="amount",
-            description= "the amount I want to transfer",
-            examples = [("I want to send or transfer 100 WETH to 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "100")]
+            description= "the amount I want to transfer or swap",
+            examples = [("I want to send or transfer 100 WETH to 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "100"), ("I want to swap 150 XDAI for DAI on Gnosis", "150")]
         ),
         Text(
             id="token",
@@ -42,6 +42,16 @@ schema = Object(
             description="The reference chain on which to perform the action",
             examples=[("I want to know the COSMO balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "Gnosis")],
         ),
+        Text(
+            id="token1",
+            description="The token used as input in the swap",
+            examples=[("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")]
+        ),
+        Text(
+            id="token2",
+            description="The token used as output in the swap",
+            examples=[("I want to swap 100 XDAI for DAI on Gnosis", "DAI")]
+        )
     ],
     examples=[
         (
