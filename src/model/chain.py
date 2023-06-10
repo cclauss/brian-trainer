@@ -18,7 +18,7 @@ schema = Object(
         Text(
             id="action",
             description="what is the action that the user wants to perform",
-            examples=[("I want to know the balance", "balance"), ("I want to swap", "swap"), ("I want to transfer", "transfer"), ("I want to send", "send"), ("I want to know the total supply", "total supply"), ("I want to swap", "swap")],
+            examples=[("I want to know the balance", "balance"), ("I want to transfer", "transfer"), ("I want to send", "send"), ("I want to know the total supply", "total supply"), ("I want to swap 200 XDAI for DAI on Gnosis", "swap")],
         ),
         Text(
             id="address",
