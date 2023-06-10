@@ -2,9 +2,9 @@ from langchain.chat_models import ChatOpenAI
 from kor.extraction import create_extraction_chain
 from kor.nodes import Object, Text
 from kor import create_extraction_chain
-import os
+from dotenv import load_dotenv
 
-os.environ["OPENAI_API_KEY"] = "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"
+load_dotenv()
 
 llm = ChatOpenAI(
     #model_name="gpt-3.5-turbo",
