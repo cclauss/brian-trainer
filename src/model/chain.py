@@ -18,13 +18,12 @@ schema = Object(
         Text(
             id="action",
             description="what is the action that the user wants to perform",
-            examples=[("I want to know the balance", "balance"), ("I want to swap", "swap"), ("I want to transfer", "transfer")],
+            examples=[("I want to know the balance", "balance"), ("I want to transfer", "transfer"), ("I want to send", "send"), ("I want to know the total supply", "total supply"), ("I want to swap 200 XDAI for DAI on Gnosis", "swap")],
         ),
         Text(
             id="address",
             description="The destination address",
-            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", 
-                       "0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92")],
+            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92")],
         ),
         Text(
             id="amount",
@@ -34,21 +33,20 @@ schema = Object(
         Text(
             id="token",
             description="The token of reference or the transacton",
-            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", 
-                       "wstETH")],
+            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "wstETH"), ("What is the GNO total supply on Gnosis", "GNO"), ("I want to know the GNO total supply on Gnosis", "GNO"), ("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")],
         ),
         Text(
             id="chain",
             description="The reference chain on which to perform the action",
-            examples=[("I want to know the COSMO balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "Gnosis")],
+            examples=[("I want to know the COSMO balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "Gnosis"), ("I want to swap 150 XDAI for DAI on Gnosis", "Gnosis")],
         ),
+        # Text(
+        #     id="token1",
+        #     description="The token used as input in the swap",
+        #     examples=[("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")]
+        # ),
         Text(
-            id="token1",
-            description="The token used as input in the swap",
-            examples=[("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")]
-        ),
-        Text(
-            id="token2",
+            id="token_out",
             description="The token used as output in the swap",
             examples=[("I want to swap 100 XDAI for DAI on Gnosis", "DAI")]
         )
