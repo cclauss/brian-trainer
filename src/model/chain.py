@@ -1,4 +1,5 @@
 from langchain.chat_models import ChatOpenAI
+from langchain import HuggingFaceHub
 from kor.extraction import create_extraction_chain
 from kor.nodes import Object, Text
 from kor import create_extraction_chain
@@ -6,10 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatOpenAI(
-    #model_name="gpt-3.5-turbo",
-    temperature=0,
-)
+repo_id = "tiiuae/falcon-7b"
+llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature":0, "max_length":64})
 
 schema = Object(
     id="brian",
@@ -18,7 +17,7 @@ schema = Object(
         Text(
             id="action",
             description="what is the action that the user wants to perform",
-            examples=[("I want to know the balance", "balance"), ("I want to transfer", "transfer"), ("I want to send", "send"), ("I want to know the total supply", "total supply"), ("I want to swap 200 XDAI for DAI on Gnosis", "swap")],
+            examples=[("I want to know the balance", "balance"), ("I want to transfer", "transfer"), ("I want to send", "send"), ("I want to know the total supply", "total supply")],
         ),
         Text(
             id="address",
@@ -28,28 +27,28 @@ schema = Object(
         Text(
             id="amount",
             description= "the amount I want to transfer or swap",
-            examples = [("I want to send or transfer 100 WETH to 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "100"), ("I want to swap 150 XDAI for DAI on Gnosis", "150")]
+            examples = [("I want to send or transfer 100 WETH to 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "100")]
         ),
         Text(
             id="token",
             description="The token of reference or the transacton",
-            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "wstETH"), ("What is the GNO total supply on Gnosis", "GNO"), ("I want to know the GNO total supply on Gnosis", "GNO"), ("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")],
+            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "wstETH"), ("What is the GNO total supply on Gnosis", "GNO"), ("I want to know the GNO total supply on Gnosis", "GNO")],
         ),
         Text(
             id="chain",
             description="The reference chain on which to perform the action",
-            examples=[("I want to know the COSMO balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "Gnosis"), ("I want to swap 150 XDAI for DAI on Gnosis", "Gnosis")],
+            examples=[("I want to know the COSMO balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "Gnosis")],
         ),
         # Text(
         #     id="token1",
         #     description="The token used as input in the swap",
         #     examples=[("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")]
         # ),
-        Text(
-            id="token_out",
-            description="The token used as output in the swap",
-            examples=[("I want to swap 100 XDAI for DAI on Gnosis", "DAI")]
-        )
+        # Text(
+        #     id="token_out",
+        #     description="The token used as output in the swap",
+        #     examples=[("I want to swap 100 XDAI for DAI on Gnosis", "DAI")]
+        # )
     ],
     examples=[
         (
