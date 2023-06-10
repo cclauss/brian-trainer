@@ -1,0 +1,14 @@
+kor
+langchain
+huggingface_hub
+fastapi
+python-dotenv
+openai
+pydantic
+sentencepiece
+google-search-results
+tiktoken
+sentence_transformers
+transformers
+torch
+web3
