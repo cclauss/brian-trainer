@@ -3,7 +3,6 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from src.model.chain import chain
 from fastapi.middleware.cors import CORSMiddleware
-from mangum import Mangum
 
 app = FastAPI()
 
@@ -23,9 +22,6 @@ app.add_middleware(
 class QueryBody(BaseModel):
     query: str
 
-@app.post("/query")
+@app.post("/api/v0/query")
 def query(body: QueryBody):
     return chain.predict_and_parse(text=body.query)["data"]["brian"][0]
-
-app.include_router(query, prefix="api/v0")
-handler = Mangum(app)

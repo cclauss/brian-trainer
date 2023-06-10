@@ -7,7 +7,6 @@ openai
 pydantic
 sentencepiece
 google-search-results
-mangum
 tiktoken
 sentence_transformers
 transformers
