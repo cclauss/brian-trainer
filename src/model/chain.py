@@ -33,7 +33,7 @@ schema = Object(
         Text(
             id="token",
             description="The token of reference or the transacton",
-            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "wstETH"), ("What is the GNO total supply on Gnosis", "GNO"), ("I want to know the GNO total supply on Gnosis", "GNO")],
+            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "wstETH"), ("What is the GNO total supply on Gnosis", "GNO"), ("I want to know the GNO total supply on Gnosis", "GNO"), ("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")],
         ),
         Text(
             id="chain",
@@ -45,11 +45,11 @@ schema = Object(
         #     description="The token used as input in the swap",
         #     examples=[("I want to swap 100 XDAI for DAI on Gnosis", "XDAI")]
         # ),
-        # Text(
-        #     id="token2",
-        #     description="The token used as output in the swap",
-        #     examples=[("I want to swap 100 XDAI for DAI on Gnosis", "DAI")]
-        # )
+        Text(
+            id="tokenOut",
+            description="The token used as output in the swap",
+            examples=[("I want to swap 100 XDAI for DAI on Gnosis", "DAI")]
+        )
     ],
     examples=[
         (
