@@ -28,7 +28,7 @@ schema = Object(
         ),
         Text(
             id="amount",
-            description= "the amount I want to transfer",
+            description= "the amount I want to transfer or swap",
             examples = [("I want to send or transfer 100 WETH to 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "100"), ("I want to swap 150 XDAI for DAI on Gnosis", "150")]
         ),
         Text(
