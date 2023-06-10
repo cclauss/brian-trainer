@@ -40,7 +40,7 @@ schema = Object(
         Text(
             id="chain",
             description="The reference chain on which to perform the action",
-            examples=[("I want to know the COSMO balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "Gnosis")],
+            examples=[("I want to know the COSMO balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "Gnosis"), ("I want to swap 150 XDAI for DAI on Gnosis", "Gnosis")],
         ),
         Text(
             id="token1",
