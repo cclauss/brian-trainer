@@ -34,8 +34,7 @@ schema = Object(
         Text(
             id="token",
             description="The token of reference or the transacton",
-            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", 
-                       "wstETH")],
+            examples=[("I want to know the wstETH balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis", "wstETH"), ("What is the GNO total supply on Gnosis", "GNO"), ("I want to know the GNO total supply on Gnosis", "GNO")],
         ),
         Text(
             id="chain",
