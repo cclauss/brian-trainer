@@ -2,3 +2,5 @@
 __pycache__/
 prompts/
 .DS_Store
+node_modules/
+.serverless
