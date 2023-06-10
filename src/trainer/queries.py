@@ -18,8 +18,8 @@ query GetUniswapV3Pools {
 """
 
 SUSHISWAP_POOLS_GNOSIS_QUERY = """
-query GetSushiswapGnosisPools {
-  liquidityPools(orderBy: cumulativeVolumeUSD, orderDirection: desc) {
+query GetSushiswapGnosisPools($first: Int!, $skip: Int!) {
+  liquidityPools(first: $first, skip: $skip, orderBy: cumulativeVolumeUSD, orderDirection: desc) {
     cumulativeVolumeUSD
     inputTokens {
       id

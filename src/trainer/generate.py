@@ -26,11 +26,15 @@ def generate_gnosis_token_mapping():
         # Create the basic prompts
         token_map = {}
         # Get the top pools by cumulative volume
-        sushiswap_result = execute_query(os.environ['SUSHISWAP_GNOSIS_THEGRAPH_URL'], SUSHISWAP_POOLS_GNOSIS_QUERY)
-        for pool in sushiswap_result['liquidityPools']:
-            for input_token in pool["inputTokens"]:
-                if input_token["symbol"] not in token_map:
-                    token_map[input_token["symbol"]] = input_token["id"]
+        first = 200
+        skip = 0
+        while skip < 1000:
+            sushiswap_result = execute_query(os.environ['SUSHISWAP_GNOSIS_THEGRAPH_URL'], SUSHISWAP_POOLS_GNOSIS_QUERY, { "first": first, "skip": skip})
+            for pool in sushiswap_result['liquidityPools']:
+                for input_token in pool["inputTokens"]:
+                    if input_token["symbol"] not in token_map:
+                        token_map[input_token["symbol"]] = input_token["id"]
+            skip += 200
         # Generate the file that will be used to train the model
         with open('prompts/gnosis_tokens.json', 'w') as prompts_file:
             json.dump(token_map, prompts_file)
@@ -43,14 +47,18 @@ def generate_gnosis_tokens_approval():
         prompts = []
         token_map = {}
         # Get the top pools by cumulative volume
-        sushiswap_result = execute_query(os.environ['SUSHISWAP_GNOSIS_THEGRAPH_URL'], SUSHISWAP_POOLS_GNOSIS_QUERY)
-        for pool in sushiswap_result['liquidityPools']:
-            for input_token in pool["inputTokens"]:
-                if input_token["id"] not in token_map:
-                    token_map[input_token["id"]] = input_token
-                    prompts.append({
-                        "prompt": "I want to approve %s spending for address 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis" % (input_token["symbol"], ),
-                    })
+        first = 200
+        skip = 0
+        while skip < 1000:
+            sushiswap_result = execute_query(os.environ['SUSHISWAP_GNOSIS_THEGRAPH_URL'], SUSHISWAP_POOLS_GNOSIS_QUERY, { "first": first, "skip": skip})
+            for pool in sushiswap_result['liquidityPools']:
+                for input_token in pool["inputTokens"]:
+                    if input_token["id"] not in token_map:
+                        token_map[input_token["id"]] = input_token
+                        prompts.append({
+                            "prompt": "I want to approve %s spending for address 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis" % (input_token["symbol"], ),
+                        })
+            skip += 200
         # Generate the file that will be used to train the model
         with open('prompts/gnosis_tokens_approve_prompts.json', 'w') as prompts_file:
             json.dump(prompts, prompts_file)
@@ -63,14 +71,18 @@ def generate_gnosis_tokens_transfer():
         prompts = []
         token_map = {}
         # Get the top pools by cumulative volume
-        sushiswap_result = execute_query(os.environ['SUSHISWAP_GNOSIS_THEGRAPH_URL'], SUSHISWAP_POOLS_GNOSIS_QUERY)
-        for pool in sushiswap_result['liquidityPools']:
-            for input_token in pool["inputTokens"]:
-                if input_token["id"] not in token_map:
-                    token_map[input_token["id"]] = input_token
-                    prompts.append({
-                        "prompt": "I want to send or transfer 100 %s to 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis" % (input_token["symbol"], ),
-                    })
+        first = 200
+        skip = 0
+        while skip < 1000:
+            sushiswap_result = execute_query(os.environ['SUSHISWAP_GNOSIS_THEGRAPH_URL'], SUSHISWAP_POOLS_GNOSIS_QUERY, { "first": first, "skip": skip})
+            for pool in sushiswap_result['liquidityPools']:
+                for input_token in pool["inputTokens"]:
+                    if input_token["id"] not in token_map:
+                        token_map[input_token["id"]] = input_token
+                        prompts.append({
+                            "prompt": "I want to send or transfer 100 %s to 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis" % (input_token["symbol"], ),
+                        })
+            skip += 200
         # Generate the file that will be used to train the model
         with open('prompts/gnosis_tokens_transfer_prompts.json', 'w') as prompts_file:
             json.dump(prompts, prompts_file)
@@ -83,16 +95,19 @@ def generate_gnosis_tokens_balance():
         # Create the basic prompts
         prompts = []
         token_map = {}
-        # Get the top pools by cumulative volume
-        sushiswap_result = execute_query(os.environ['SUSHISWAP_GNOSIS_THEGRAPH_URL'], SUSHISWAP_POOLS_GNOSIS_QUERY)
-        for pool in sushiswap_result['liquidityPools']:
-            for input_token in pool["inputTokens"]:
-                if input_token["id"] not in token_map:
-                    token_map[input_token["id"]] = input_token
-                    prompts.append({
-                        "prompt": "I want to know the %s balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis" % (input_token["symbol"], ),
-                        
-                    })
+        # Get the top pools by cumulative volume        
+        first = 200
+        skip = 0
+        while skip < 1000:
+            sushiswap_result = execute_query(os.environ['SUSHISWAP_GNOSIS_THEGRAPH_URL'], SUSHISWAP_POOLS_GNOSIS_QUERY, { "first": first, "skip": skip})
+            for pool in sushiswap_result['liquidityPools']:
+                for input_token in pool["inputTokens"]:
+                    if input_token["id"] not in token_map:
+                        token_map[input_token["id"]] = input_token
+                        prompts.append({
+                            "prompt": "I want to know the %s balance of 0xFe8e15ae884524eFfc2fe91dF6f5BA40D8533A92 on Gnosis" % (input_token["symbol"], ),     
+                        })
+            skip += 200
         # Generate the file that will be used to train the model
         with open('prompts/gnosis_tokens_balance_prompts.json', 'w') as prompts_file:
             json.dump(prompts, prompts_file)
